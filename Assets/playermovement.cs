@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class playermovement : MonoBehaviour
+public class playermovement : NetworkBehaviour
 {
     public CharacterController controller;
 
@@ -9,6 +10,11 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!isLocalPlayer)
+        {
+            return;
+        }
+
         var x = Input.GetAxis("Horizontal");
         var z = Input.GetAxis("Vertical");
 
